@@ -1,3 +1,7 @@
 <section id="map" class="map-wrapper">
 	 <div ui-map="myMap" ui-options="mapOptions" class="map-canvas"></div>
 </section>
+
+<div ng-repeat="stop in busStops" ui-map-marker="busStops[$index]"
+  ui-event="{'map-click': 'showNextArrivals(stop)'}">
+</div>

@@ -4,6 +4,7 @@
 angular.module('londonBusStopsApp')
   .controller('MapsCtrl', function ($scope) {
 		$scope.loading = true;
+		$scope.busStops = [];
 		var myPosition;
 
 		function handleNoGeolocation() {
@@ -32,15 +33,21 @@ angular.module('londonBusStopsApp')
 					jQuery.each(data.markers, function(i,markerInfo){
 						markerLatLng = new google.maps.LatLng(markerInfo.lat,markerInfo.lng);
 
-						marker = new google.maps.Marker({
+						var marker = new google.maps.Marker({
+							map: $scope.myMap,
 							position: markerLatLng,
 							icon: 'images/london-buses-logo.png'
 						});
 
-						marker.setMap($scope.myMap);
-						attachMarkerClick(marker,markerInfo,markerInfo.id);
+						marker.stopInfo = markerInfo;
+						$scope.busStops.push(marker);
+
 
 					});
+
+					$scope.showNextArrivals = function(busStop) {
+						$scope.open(busStop);
+					};
 			  },
 			  error: function(xhr,status,error) {
 			    console.warn('fail',status,error);

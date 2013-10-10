@@ -6,10 +6,10 @@ angular.module('londonBusStopsApp')
   .controller('ModalCtrl', function ($scope, $modal, $log) {
 	  $scope.items = [];
 
-	  $scope.open = function (stopInfo,id) {
+	  $scope.open = function (marker) {
 			$scope.loading = true;
-			var url = 'http://digitaslbi-id-test.herokuapp.com/bus-stops/'+id;
-			$scope.stopInfo = stopInfo;
+			var url = 'http://digitaslbi-id-test.herokuapp.com/bus-stops/'+marker.stopInfo.id;
+			$scope.stopInfo = marker.stopInfo;
 			jQuery.ajax({
 			  dataType: 'jsonp',
 			  url: url,
@@ -20,7 +20,7 @@ angular.module('londonBusStopsApp')
 						controller: 'ModalInstanceCtrl',
 						resolve: {
 						  items: function () {
-								data.infos = stopInfo;
+								data.infos = marker.stopInfo;
 								$scope.items = data.arrivals;
 						    return data;
 						  }
