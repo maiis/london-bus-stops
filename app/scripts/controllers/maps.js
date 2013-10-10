@@ -1,9 +1,9 @@
-/* global google:true */
+/* global google:true, jQuery:true */
 'use strict';
 
 angular.module('londonBusStopsApp')
   .controller('MapsCtrl', function ($scope) {
-
+		$scope.loading = true;
 		var myPosition;
 
 		function handleNoGeolocation() {
@@ -11,9 +11,9 @@ angular.module('londonBusStopsApp')
 		}
 
 		function attachMarkerClick(marker,stopInfo,id) {
-  		google.maps.event.addListener(marker, 'click', function() {
-  		  $scope.open(stopInfo,id);
-  		});
+			google.maps.event.addListener(marker, 'click', function() {
+			  $scope.open(stopInfo,id);
+			});
 		}
 
 		function getBusStops() {
@@ -28,12 +28,13 @@ angular.module('londonBusStopsApp')
 			  url: url,
 			  success: function(data) {
 					console.warn(data);
+					$scope.loading = false;
 					jQuery.each(data.markers, function(i,markerInfo){
 						markerLatLng = new google.maps.LatLng(markerInfo.lat,markerInfo.lng);
 
 						marker = new google.maps.Marker({
 							position: markerLatLng,
-							title:"Hello World!"
+							icon: 'images/london-buses-logo.png'
 						});
 
 						marker.setMap($scope.myMap);
@@ -42,7 +43,7 @@ angular.module('londonBusStopsApp')
 					});
 			  },
 			  error: function(xhr,status,error) {
-			    console.warn("fail",status,error);
+			    console.warn('fail',status,error);
 			  }
 			});
 		}
@@ -53,6 +54,13 @@ angular.module('londonBusStopsApp')
 		    myPosition = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
 		    $scope.myMap.setCenter(myPosition);
 		    getBusStops();
+
+				google.maps.event.addListener($scope.myMap, 'zoom_changed', function() {
+					getBusStops();
+				});
+				google.maps.event.addListener($scope.myMap, 'center_changed', function() {
+					getBusStops();
+				});
 		  }, function() {
 		    handleNoGeolocation();
 		  });
