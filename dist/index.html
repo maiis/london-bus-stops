@@ -45,9 +45,9 @@
 
     <div class="container map-container" ng-view="" ng-controller="ModalCtrl"></div>
 
+    <span ng-show="loading">YOOOOO</span>
+
     <script type="text/ng-template" id="nextArrivals.html">
- <div class="modal-dialog">
-      <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h4 class="modal-title">{{items.infos.name}} towards {{items.infos.towards}}</h4>
@@ -75,8 +75,6 @@
            <button class="btn btn-primary" ng-click="ok()">OK</button>
             <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
         </div>
-      </div>
-    </div>
     </script>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -95,10 +93,10 @@
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
         <script src="bower_components/modernizr/modernizr.js"></script>
 
-        <script src="scripts/d41d8cd9.plugins.js"></script>
+        <script src="scripts/4c5a81b7.plugins.js"></script>
 
-        <script src="scripts/720a32a3.modules.js"></script>
+        <script src="scripts/c3dc860a.modules.js"></script>
 
-        <script src="scripts/7af40605.scripts.js"></script>
+        <script src="scripts/587ebbbf.scripts.js"></script>
 </body>
 </html>

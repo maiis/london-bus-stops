@@ -32,8 +32,7 @@ describe('pagination directive', function () {
     expect(element.hasClass('pagination')).toBe(true);
   });
 
-  it('contains one ul and num-pages + 2 li elements', function() {
-    expect(element.find('ul').length).toBe(1);
+  it('contains num-pages + 2 li elements', function() {
     expect(getPaginationBarSize()).toBe(7);
     expect(getPaginationEl(0).text()).toBe('Previous');
     expect(getPaginationEl(-1).text()).toBe('Next');
@@ -198,7 +197,7 @@ describe('pagination directive', function () {
       clickPaginationEl(0);
 
       expect($rootScope.currentPage).toBe(6);
-     expect(getPaginationEl(3)).toHaveClass('active');
+      expect(getPaginationEl(3)).toHaveClass('active');
       expect(getPaginationEl(3).text()).toBe(''+$rootScope.currentPage);
     });
 
@@ -239,8 +238,7 @@ describe('pagination directive', function () {
       $rootScope.$digest();
     }));
 
-    it('contains one ul and maxsize + 4 elements', function() {
-      expect(element.find('ul').length).toBe(1);
+    it('contains maxsize + 4 elements', function() {
       expect(getPaginationBarSize()).toBe($rootScope.maxSize + 4);
       expect(getPaginationEl(0).text()).toBe('Previous');
       expect(getPaginationEl(1).text()).toBe('...');
@@ -299,8 +297,7 @@ describe('pagination directive', function () {
       $rootScope.$digest();
     }));
 
-    it('contains one ul and num-pages + 4 li elements', function() {
-      expect(element.find('ul').length).toBe(1);
+    it('contains num-pages + 4 li elements', function() {
       expect(getPaginationBarSize()).toBe(9);
       expect(getPaginationEl(0).text()).toBe('First');
       expect(getPaginationEl(1).text()).toBe('Previous');
@@ -393,7 +390,7 @@ describe('pagination directive', function () {
       $rootScope.$digest();
     }));
 
-    it('contains one ul and num-pages li elements', function() {
+    it('contains num-pages li elements', function() {
       expect(getPaginationBarSize()).toBe(5);
       expect(getPaginationEl(0).text()).toBe('1');
       expect(getPaginationEl(-1).text()).toBe('5');
