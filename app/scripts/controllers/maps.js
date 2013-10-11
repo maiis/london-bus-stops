@@ -3,12 +3,12 @@
 
 angular.module('londonBusStopsApp')
   .controller('MapsCtrl', function ($scope) {
-		$scope.loading = true;
+		jQuery('#loader').spin('large').show();
 		$scope.busStops = [];
 		var myPosition;
 
 		function handleNoGeolocation() {
-			console.warn('no location');
+			jQuery('.map-container').addClass('no-location');
 		}
 
 		function attachMarkerClick(marker,stopInfo,id) {
@@ -28,7 +28,6 @@ angular.module('londonBusStopsApp')
 			  dataType: 'jsonp',
 			  url: url,
 			  success: function(data) {
-					console.warn(data);
 					$scope.loading = false;
 					jQuery.each(data.markers, function(i,markerInfo){
 						markerLatLng = new google.maps.LatLng(markerInfo.lat,markerInfo.lng);
@@ -50,17 +49,20 @@ angular.module('londonBusStopsApp')
 					};
 			  },
 			  error: function(xhr,status,error) {
-			    console.warn('fail',status,error);
+			    console.log('fail',status,error);
 			  }
 			});
 		}
 
-		// Try W3C Geolocation (Preferred)
 		if(navigator.geolocation) {
 		  navigator.geolocation.getCurrentPosition(function(position) {
 		    myPosition = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
 		    $scope.myMap.setCenter(myPosition);
+		    $scope.myMap.setZoom(17);
+		    jQuery('#loader').spin(false).hide();
 		    getBusStops();
+
+		    google.maps.event.clearListeners($scope.myMap, 'click');
 
 				google.maps.event.addListener($scope.myMap, 'zoom_changed', function() {
 					getBusStops();
@@ -79,8 +81,8 @@ angular.module('londonBusStopsApp')
 
 
     $scope.mapOptions = {
-      center: new google.maps.LatLng(35.784, -78.670),
-      zoom: 17,
+      center: new google.maps.LatLng(51.511214, -0.119824),
+      zoom: 13,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 

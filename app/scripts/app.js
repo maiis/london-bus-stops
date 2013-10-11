@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('londonBusStopsApp', ['ui.map','ui.event','ui.bootstrap','ui.bootstrap.modal','ui.bootstrap.tpls','angularSpinner'])
+angular.module('londonBusStopsApp', ['ui.map','ui.event','ui.bootstrap','ui.bootstrap.modal','ui.bootstrap.tpls'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <link rel="stylesheet" href="styles/28ebf941.main.css">
+    <link rel="stylesheet" href="styles/df5ca9ea.main.css">
 </head>
   <body ng-app="londonBusStopsApp">
     <!--[if lt IE 7]>
@@ -43,9 +43,9 @@
       </div>
     </div>
 
-    <div class="container map-container" ng-view="" ng-controller="ModalCtrl"></div>
+    <div class="container map-container" ng-view="" ng-controller="ArrivalsCtrl"></div>
 
-    <span ng-show="loading">YOOOOO</span>
+    <span id="loader"></span>
 
     <script type="text/ng-template" id="nextArrivals.html">
         <div class="modal-header">
@@ -72,8 +72,7 @@
         </div>
         </div>
         <div class="modal-footer">
-           <button class="btn btn-primary" ng-click="ok()">OK</button>
-            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+           <button class="btn btn-primary" ng-click="ok()">Close</button>
         </div>
     </script>
 
@@ -91,13 +90,12 @@
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-    <script src="bower_components/modernizr/modernizr.js"></script>
 
-    <script src="scripts/e5f3a106.plugins.js"></script>
+    <script src="scripts/68b300a0.plugins.js"></script>
 
-    <script src="scripts/c3dc860a.modules.js"></script>
+    <script src="scripts/f69da0e4.modules.js"></script>
 
-    <script src="scripts/c486c0c3.scripts.js"></script>
+    <script src="scripts/b894757f.scripts.js"></script>
 
 </body>
 </html>

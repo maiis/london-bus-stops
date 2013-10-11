@@ -11,9 +11,9 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <!-- build:css(.tmp) styles/main.css -->
-        <link rel="stylesheet" href="styles/main.css">
-        <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
 </head>
   <body ng-app="londonBusStopsApp">
     <!--[if lt IE 7]>
@@ -45,9 +45,9 @@
       </div>
     </div>
 
-    <div class="container map-container" ng-view=""  ng-controller="ModalCtrl"></div>
+    <div class="container map-container" ng-view="" ng-controller="ArrivalsCtrl"></div>
 
-    <span ng-show="loading">YOOOOO</span>
+    <span id="loader"></span>
 
     <script type="text/ng-template" id="nextArrivals.html">
         <div class="modal-header">
@@ -74,8 +74,7 @@
         </div>
         </div>
         <div class="modal-footer">
-           <button class="btn btn-primary" ng-click="ok()">OK</button>
-            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+           <button class="btn btn-primary" ng-click="ok()">Close</button>
         </div>
     </script>
 
@@ -93,18 +92,16 @@
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/modernizr/modernizr.js"></script>
 
     <!-- build:js scripts/plugins.js -->
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/spin.js/dist/spin.js"></script>
-    <script src="bower_components/angular-spinner/angular-spinner.js"></script>
+    <script src="scripts/plugins/jquery.spin.js"></script>
+    <script src="bower_components/bootstrap-sass/js/collapse.js"></script>
+    <script src="bower_components/bootstrap-sass/js/transition.js"></script>
     <!-- endbuild -->
 
     <!-- build:js scripts/modules.js -->
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-ui-utils/modules/event/event.js "></script>
     <script src="bower_components/angular-ui-map/src/map.js"></script>
     <script src="bower_components/angular-ui-bootstrap/dist/ui-bootstrap-custom-0.6.0-SNAPSHOT.js"></script>
@@ -113,9 +110,8 @@
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/maps.js"></script>
-    <script src="scripts/controllers/modal.js"></script>
+    <script src="scripts/controllers/arrivals.js"></script>
     <!-- endbuild -->
 
 </body>
