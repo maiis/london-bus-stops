@@ -1,6 +1,36 @@
 <section id="map" class="map-wrapper">
-	 <div ui-map="myMap" ui-options="mapOptions" class="map-canvas"></div>
+	<div ui-map="myMap" ui-options="mapOptions" class="map-canvas"></div>
+	<loading></loading>
 </section>
 
 <div ng-repeat="stop in busStops" ui-map-marker="busStops[$index]" ui-event="{'map-click': 'showNextArrivals(stop)'}">
 </div>
+
+<section id="details" ng-show="detailview" class="next-arrivals-panel">
+	<header>
+		<button type="button" class="close" ng-click="closeNextArrivals()">&times;</button>
+		<h5>{{busStopInfo.name}} <span>towards</span> {{busStopInfo.towards}}</h5>
+	</header>
+	<loadingdetails></loadingdetails>
+	<div class="content">
+		<div class="table-responsive">
+			<table class="table">
+				<thead>
+					<tr>
+						<th colspan="2">Destination</th>
+						<th class="duetime">In</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="arrival in nextArrivals.arrivals">
+						<td>{{arrival.routeName}}</td>
+						<td>{{arrival.destination}}</td>
+						<td class="duetime">{{arrival.estimatedWait}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</section>
+
+<status></status>
